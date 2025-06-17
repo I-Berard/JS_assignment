@@ -79,5 +79,6 @@ app.post('login', async (req, res) => {
     }
 
     let token = jwt.sign({id: user._id, email: user.email}, process.env.JWT_SECRET, {expiresIn: '1h'});
-    
+
+    res.header('Authorisation', `Bearer ${token}`).json({message: 'Logged in successfully', token});
 })
